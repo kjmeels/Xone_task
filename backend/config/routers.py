@@ -1,6 +1,7 @@
 from rest_framework.routers import DefaultRouter
 
+from links.viewsets import LinkViewSet
+
 router = DefaultRouter()
 
-# router.register("main_page", MainPageViewSet, basename="main_page")
-
+router.register("links", LinkViewSet, basename="links")
