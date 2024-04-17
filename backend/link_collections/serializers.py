@@ -4,6 +4,8 @@ from .models import Collection
 
 
 class CollectionSerializer(serializers.ModelSerializer):
+    """Сериализатор коллекций."""
+
     class Meta:
         model = Collection
         fields = (
@@ -13,6 +15,8 @@ class CollectionSerializer(serializers.ModelSerializer):
 
 
 class CollectionDetailSerializer(serializers.ModelSerializer):
+    """Сериализатор деталки коллекций."""
+
     class Meta:
         model = Collection
         fields = (
@@ -26,6 +30,8 @@ class CollectionDetailSerializer(serializers.ModelSerializer):
 
 
 class CollectionCreateUpdateSerializer(serializers.ModelSerializer):
+    """Сериализатор на создание/обновление коллекций."""
+
     class Meta:
         model = Collection
         fields = (

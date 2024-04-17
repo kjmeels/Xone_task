@@ -4,7 +4,7 @@ from .models import Link
 
 
 class LinkSerializer(serializers.ModelSerializer):
-    """ Сериализатор ссылок. """
+    """Сериализатор ссылок."""
 
     class Meta:
         model = Link
@@ -15,7 +15,7 @@ class LinkSerializer(serializers.ModelSerializer):
 
 
 class LinkDetailSerializer(serializers.ModelSerializer):
-    """ Сериализатор деталки ссылки. """
+    """Сериализатор деталки ссылки."""
 
     class Meta:
         model = Link
@@ -31,11 +31,30 @@ class LinkDetailSerializer(serializers.ModelSerializer):
         )
 
 
-class LinkCreateUpdateSerializer(serializers.ModelSerializer):
-    """ Сериализатор ссылок. """
+class LinkCreateSerializer(serializers.ModelSerializer):
+    """Сериализатор на создание ссылок."""
+
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Link
         fields = (
             "link",
+            "user",
+        )
+
+
+class LinkUpdateSerializer(serializers.ModelSerializer):
+    """Сериализатор на обновление ссылок."""
+
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Link
+        fields = (
+            "header",
+            "description",
+            "image",
+            "link_type",
+            "user",
         )

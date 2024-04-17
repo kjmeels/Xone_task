@@ -6,32 +6,70 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('link_collections', '0001_initial'),
+        ("link_collections", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Link',
+            name="Link",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('header', models.CharField(max_length=50, verbose_name='Заголовок страницы')),
-                ('description', models.CharField(max_length=100, verbose_name='Краткое описание')),
-                ('link', models.URLField(verbose_name='Ссылка на страницу')),
-                ('image', models.ImageField(blank=True, null=True, upload_to='l/l/i', verbose_name='Картинка')),
-                ('link_type', models.CharField(choices=[('website', 'сайт'), ('book', 'книга'), ('article', 'артикул'), ('music', 'музыка'), ('video', 'видео')], default='website', max_length=50, verbose_name='Тип ссылки')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('collections', models.ManyToManyField(related_name='links', to='link_collections.collection', verbose_name='Коллекция')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='links', to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+                    ),
+                ),
+                ("header", models.CharField(max_length=50, verbose_name="Заголовок страницы")),
+                ("description", models.CharField(max_length=100, verbose_name="Краткое описание")),
+                ("link", models.URLField(verbose_name="Ссылка на страницу")),
+                (
+                    "image",
+                    models.ImageField(
+                        blank=True, null=True, upload_to="l/l/i", verbose_name="Картинка"
+                    ),
+                ),
+                (
+                    "link_type",
+                    models.CharField(
+                        choices=[
+                            ("website", "сайт"),
+                            ("book", "книга"),
+                            ("article", "артикул"),
+                            ("music", "музыка"),
+                            ("video", "видео"),
+                        ],
+                        default="website",
+                        max_length=50,
+                        verbose_name="Тип ссылки",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "collections",
+                    models.ManyToManyField(
+                        related_name="links",
+                        to="link_collections.collection",
+                        verbose_name="Коллекция",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="links",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Пользователь",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Ссылка',
-                'verbose_name_plural': 'Ссылки',
+                "verbose_name": "Ссылка",
+                "verbose_name_plural": "Ссылки",
             },
         ),
     ]
