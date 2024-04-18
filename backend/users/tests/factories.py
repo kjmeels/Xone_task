@@ -5,9 +5,7 @@ from ..models import User
 
 
 class UserFactory(DjangoModelFactory):
-    username = factory.Sequence(lambda x: f"user_{x}")
+    email = factory.Sequence(lambda x: f"email{x}@mail.ru")
 
     class Meta:
         model = User
-
-

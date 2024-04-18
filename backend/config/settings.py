@@ -37,6 +37,11 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
 }
 
+SPECTACULAR_SETTINGS = {
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SWAGGER_UI_DIST": "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.11.5",
+}
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -81,7 +86,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -98,7 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
 
 # Internationalization
 

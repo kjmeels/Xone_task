@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from links.serializers import LinkSerializer
 from .models import Collection
 
 
@@ -16,6 +17,8 @@ class CollectionSerializer(serializers.ModelSerializer):
 
 class CollectionDetailSerializer(serializers.ModelSerializer):
     """Сериализатор деталки коллекций."""
+
+    links = LinkSerializer(many=True)
 
     class Meta:
         model = Collection
