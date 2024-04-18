@@ -32,9 +32,12 @@ class CollectionDetailSerializer(serializers.ModelSerializer):
 class CollectionCreateUpdateSerializer(serializers.ModelSerializer):
     """Сериализатор на создание/обновление коллекций."""
 
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Collection
         fields = (
             "name",
             "short_description",
+            "user",
         )

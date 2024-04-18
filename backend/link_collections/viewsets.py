@@ -1,7 +1,10 @@
 from django.db.models import QuerySet
-from drf_spectacular.utils import extend_schema
-from rest_framework import viewsets
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema, OpenApiParameter
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
 
 from common.permissions import IsOwner
@@ -14,7 +17,7 @@ from .serializers import (
 
 
 @extend_schema(tags=["collections"])
-class CollectionViewSet(viewsets.ModelViewSet):
+class CollectionViewSet(ModelViewSet):
     """Вьюсет коллекций."""
 
     permission_classes = [IsAuthenticated, IsOwner]

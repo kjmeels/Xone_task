@@ -30,7 +30,7 @@ class TestLinkViewSet(APITestCase):
 
         res_json = res.json()
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(res_json), len(links) / len(users))
+        self.assertEqual(len(res_json), len(links) // len(users))
 
     def test_create(self):
         user = UserFactory()
@@ -71,10 +71,13 @@ class TestLinkViewSet(APITestCase):
 
         res_json = res.json()
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res_json["header"], payload["header"])
-        self.assertEqual(res_json["description"], payload["description"])
-        self.assertTrue(res_json["image"])
-        self.assertEqual(res_json["link_type"], payload["link_type"])
+        self.assertEqual(Link.objects.count(), 1)
+        link.refresh_from_db()
+        link_obj = Link.objects.first()
+        self.assertEqual(link_obj.header, payload["header"])
+        self.assertEqual(link_obj.description, payload["description"])
+        self.assertTrue(link_obj.image)
+        self.assertEqual(link_obj.link_type, payload["link_type"])
 
     def test_destroy(self):
         user = UserFactory()
